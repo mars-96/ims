@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 from .config import DB_NAME,DB_USER,DB_PASSWORD,DB_HOST,DB_PORT
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
     'users',
 ]
 
@@ -140,7 +142,13 @@ REST_FRAMEWORK={
     )
 }
 
-# AUTH_USER_MODEL = 'users.New User'
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    # 'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+AUTH_USER_MODEL = 'users.UserAccount'
 
 CORS_ALLOWED_ORIGINS=[
     'http://localhost:3000',
